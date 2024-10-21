@@ -1,8 +1,13 @@
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+  const navigate = useNavigate()
+let clearUser=()=>{
+  localStorage.removeItem("token");
+  navigate('/')
+}
   return (
     <>
     <Box sx={{ flexGrow: 1 }}>
@@ -23,6 +28,7 @@ const Navbar = () => {
 
        <Link to="/home"><Button variant="contained" >Home</Button></Link>
        <Link to="/add"><Button  variant="contained" >Add</Button></Link>
+       <Button  variant="contained" onClick={clearUser} >Logout</Button>
        {/* <Button color="inherit" onClick={()=>navigate('/')}>Home</Button>
        <Button color="inherit" onClick={()=>navigate('/add')}>Add</Button> */}
      </Toolbar>

@@ -11,7 +11,7 @@ import axios from 'axios'
 import Navbar from './Navbar';
 import axiosInstance from '../axiosinterceptor';//default instance
 const Home = () => {
-    const user = localStorage.getItem("username");
+    const user = localStorage.getItem("userName");
   const [inputs ,setInputs] = useState([])
   const navigate = useNavigate()
   function updateCourse(course){
@@ -19,7 +19,7 @@ const Home = () => {
   }
   let deleteCourse =(p)=>{
     //update with newly created instance
-    
+
     axiosInstance.delete('http://localhost:3000/course/deleteCourse/'+p).then((res)=>{
       window.location.reload()
     }
@@ -42,7 +42,7 @@ const Home = () => {
 <>
 <Navbar/>
     <div>
-        Welcome {user}
+        {/* Welcome {user} */}
     </div>
     
     <Container>
