@@ -15,7 +15,7 @@ router.post('/login',async(req,res)=>{
         if(user.password==req.body.password)
         {
             const payload={uname:req.body.userName,pwd:req.body.password};
-            const token=jwt.sign(payload,"secret")
+            const token=jwt.sign(payload,"secret")//algorithm ,expiry time,
             res.status(200).send({message:"Login successful",usertoken:token})
         }
     }

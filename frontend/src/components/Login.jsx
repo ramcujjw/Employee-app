@@ -46,3 +46,5 @@ let validateUser=()=>{
 }
 
 export default Login
+//interceptors 
+//js file because no rendering only actions
