@@ -6,9 +6,9 @@ app.use(cors())
 require('dotenv').config()
 const PORT = process.env.PORT
 
-const courseRoutes = require('./routes/courseRoutes')
+const empRoutes = require('./routes/empRoutes')
 const user_route=require('./routes/user')
-app.use('/course',courseRoutes)
+app.use('/emp',empRoutes)
 require('./db/connection');
 app.use("/user",user_route)
 
