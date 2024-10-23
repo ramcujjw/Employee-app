@@ -7,39 +7,39 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container, Grid, Stack } from '@mui/material';
 import  {useNavigate} from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios'   
 import Navbar from './Navbar';
-import axiosInstance from '../axiosinterceptor';//default instance
+import axiosInstance from '../axiosinterceptor';
 const Home = () => {
     const user = localStorage.getItem("userName");
   const [inputs ,setInputs] = useState([])
   const navigate = useNavigate()
-  function updateCourse(course){
-    navigate('/add',{state:{course}})
+  function updateEmp(emp){
+    navigate('/add',{state:{emp}})
   }
-  let deleteCourse =(p)=>{
-    //update with newly created instance
+  let deleteEmp =(p)=>{
+   
 
-    axiosInstance.delete('http://localhost:3000/course/deleteCourse/'+p).then((res)=>{
+    axiosInstance.delete('http://localhost:3000/emp/deleteEmp/'+p).then((res)=>{
       window.location.reload()
     }
-//navigate /path
+
     ).catch((error)=>{
       console.log(error)
     })
   }
   useEffect(() => {
-    axiosInstance.get('http://localhost:3000/course/')
+    axiosInstance.get('http://localhost:3000/emp/')
         .then((res) => {
-            setInputs(res.data); // Set fetched product data
+            setInputs(res.data); 
         })
         .catch((error) => {
-            console.error("Error fetching data: ", error); // Handle error
+            console.error("Error fetching data: ", error); 
         });
 }, []);
 
   return (
-<>
+<> 
 <Navbar/>
     <div>
         {/* Welcome {user} */}
@@ -51,36 +51,36 @@ const Home = () => {
                     <Grid item key={input._id} xs={12} sm={6} md={4}>
                         <Card>
                             <CardMedia
-                                component="img"
-                                height="200"
-                                image={input.courseImageurl}
-                                alt={input.title}
-                                style={{ objectFit: 'contain' }} // Ensures the image fits nicely within the card
+                                // component="img"
+                                // height="200"
+                                // image={input.courseImageurl}
+                                // alt={input.title}
+                                // style={{ objectFit: 'contain' }} 
                             />
                             <CardContent>
                             <Typography variant="h6" component="div">
-                                    {input.courseId}
+                                    {input.empId}
                                 </Typography>
                                 <Typography variant="h6" component="div">
-                                    {input.courseName}
+                                    {input.empName}
                                 </Typography>
                                 <Typography variant="h6" component="div">
-                                    {input.courseCategory}
+                                    {input.empDesignation}
                                 </Typography>
                                 <Typography variant="h6" component="div">
-                                    {input.courseDescription}
+                                    {input.empDepartment}
                                 </Typography>
                                 <Typography variant="h6" component="div">
-                                    {input.courseDuration}
+                                    {input.empLocation}
                                 </Typography>
                                 <Typography variant="h6" component="div">
-                                    {input.courseFee}
+                                    {input.empSalary}
                                 </Typography>
 
                                 <Stack direction="row" spacing={4}>
-                                <Button  variant="contained" color="success" onClick={()=>{updateCourse(input)}} >Edit</Button>
+                                <Button  variant="contained" color="success" onClick={()=>{updateEmp(input)}} >Edit</Button>
 
-                                <Button  variant="contained" color="error" onClick={()=>{deleteCourse(input._id)}} >Delete</Button>
+                                <Button  variant="contained" color="error" onClick={()=>{deleteEmp(input._id)}} >Delete</Button>
 
                                 </Stack>
                             </CardContent>

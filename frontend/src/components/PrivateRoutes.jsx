@@ -9,7 +9,7 @@ const PrivateRoutes = () => {
     if (token) {
         verifyUser=true
     }
-     
+    
   return (
     verifyUser?<Outlet/>:<Navigate to={'/'}/>
   )

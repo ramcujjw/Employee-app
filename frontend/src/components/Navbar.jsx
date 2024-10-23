@@ -23,7 +23,7 @@ let clearUser=()=>{
          {/* <MenuIcon /> */}
        </IconButton>
        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-         Course
+        Employee
        </Typography>
 
        <Link to="/home"><Button variant="contained" >Home</Button></Link>

@@ -9,13 +9,13 @@ import axiosInstance from '../axiosinterceptor';
 const Add = () => {
   const navigate = useNavigate()
   const [form, setForm]=useState({
-    courseImageurl:'',
-    courseId : '',
-    courseName : '',
-    courseCategory: '',
-    courseDescription : '',
-    courseDuration :'',
-    courseFee:''
+    
+    empId : '',
+    empName : '',
+    empDesignation: '',
+    empDepartment : '',
+    empLocation :'',
+    empSalary:''
     
 
 
@@ -26,7 +26,7 @@ const Add = () => {
   const location = useLocation()
   let sendData=()=>{
     if(location.state!= null){
-      axiosInstance.put('http://localhost:3000/course/editCourse/'+location.state.course._id,form).then((res)=>{
+      axiosInstance.put('http://localhost:3000/emp/editEmp/'+location.state.emp._id,form).then((res)=>{
         alert('Data updated');
         navigate('/home')
       }).catch((error)=>{
@@ -34,7 +34,7 @@ const Add = () => {
       })
     }
     else{
-      axiosInstance.post('http://localhost:3000/course/add',form).then((res)=>{
+      axiosInstance.post('http://localhost:3000/emp/add',form).then((res)=>{
         navigate('/home')
       }).catch((error)=>{
         console.log(error)
@@ -44,13 +44,13 @@ const Add = () => {
   useEffect(()=>{
     if(location.state!=null){
       setForm({...form,
-        courseImageurl:location.state.course.courseImageurl,
-        courseId:location.state.course.courseId,
-        courseName:location.state.course.courseName,
-        courseCategory:location.state.course.courseCategory,
-        courseDescription:location.state.course.courseDescription,
-        courseDuration:location.state.course.courseDuration,
-        courseFee:location.state.course.courseFee,
+        
+        enpId:location.state.emp.empId,
+        empName:location.state.emp.empName,
+        empDesignation:location.state.emp.empDesignation,
+        empDepartment:location.state.emp.empDepartment,
+        empLocation:location.state.emp.empLocation,
+        empSalary:location.state.emp.empSalary,
 
       })
     }
@@ -66,13 +66,12 @@ const Add = () => {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="imageurl" variant="outlined" name="courseImageurl" value={form.courseImageurl} onChange={onInputChange} /><br />
-      <TextField id="outlined-basic" label="id" variant="outlined" name="courseId" value={form.courseId} onChange={onInputChange} /><br />
-      <TextField id="outlined-basic" label="name" variant="outlined" name="courseName" value={form.courseName} onChange={onInputChange}/><br />
-      <TextField id="outlined-basic" label="category" variant="outlined" name="courseCategory" value={form.courseCategory} onChange={onInputChange}/> <br />
-      <TextField id="outlined-basic" label="description" variant="outlined" name="courseDescription"  value={form.courseDescription} onChange={onInputChange}/> <br />
-      <TextField id="outlined-basic" label="duration" variant="outlined" name="courseDuration" value={form.courseDuration} onChange={onInputChange}/> <br />
-      <TextField id="outlined-basic" label="fee" variant="outlined" name="courseFee" value={form.courseFee} onChange={onInputChange} /><br />
+      <TextField id="outlined-basic" label="id" variant="outlined" name="empId" value={form.empId} onChange={onInputChange} /><br />
+      <TextField id="outlined-basic" label="name" variant="outlined" name="empName" value={form.empName} onChange={onInputChange}/><br />
+      <TextField id="outlined-basic" label="Designation" variant="outlined" name="empDesignation" value={form.empDesignation} onChange={onInputChange}/> <br />
+      <TextField id="outlined-basic" label="Department" variant="outlined" name="empDepartment"  value={form.empDepartment} onChange={onInputChange}/> <br />
+      <TextField id="outlined-basic" label="Location" variant="outlined" name="empLocation" value={form.empLocation} onChange={onInputChange}/> <br />
+      <TextField id="outlined-basic" label="Salary" variant="outlined" name="empSalary" value={form.empSalary} onChange={onInputChange} /><br />
       <Button variant="contained" onClick={sendData}>Submit</Button>
       
     </Box>
